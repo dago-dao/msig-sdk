@@ -6,7 +6,7 @@ import {
   getMultisigContext,
 } from '@parrotfi/msig'
 import {readFileSync} from 'fs'
-import {join} from 'path'
+import {join, normalize} from 'path'
 import {accounts} from './accounts'
 import {PROPOSALS} from './proposals'
 
@@ -14,7 +14,7 @@ async function verifyProposals() {
   const wallet = Keypair.fromSecretKey(
     Buffer.from(
       JSON.parse(
-        readFileSync(join(__dirname, '../key.json'), {
+        readFileSync(normalize(join(__dirname, '../key.json')), {
           encoding: 'utf-8',
         }),
       ),
